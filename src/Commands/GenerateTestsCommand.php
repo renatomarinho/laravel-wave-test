@@ -31,8 +31,9 @@ class GenerateTestsCommand extends Command
         }
 
         $controllerData = $this->getControllerAndMethod($route);
-        if (!$controllerData) {
-            $this->warn("No controller found for route: $routeName");
+
+        if (!is_array($controllerData) || count($controllerData) !== 2) {
+            $this->warn("Invalid controller data for route: $routeName");
             return;
         }
 
@@ -52,6 +53,10 @@ class GenerateTestsCommand extends Command
         $controller = isset($action['controller']) ? $action['controller'] : null;
 
         if (!$controller) {
+            return null;
+        }
+
+        if (strpos($controller, '@') === false) {
             return null;
         }
 
