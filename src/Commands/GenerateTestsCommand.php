@@ -24,6 +24,7 @@ class GenerateTestsCommand extends Command
     private function processRoute($route)
     {
         $routeName = $this->getRouteName($route);
+
         if (empty($routeName)) {
             $this->warn("Route without name: " . $route->uri());
             return;
