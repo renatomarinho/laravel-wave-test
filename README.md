@@ -1,6 +1,6 @@
-# Laravel Test Wave
+# Laravel Wave Test
 
-**Laravel Test Wave** is a tool designed to streamline the process of creating and running tests in Laravel projects. This package provides two main commands: `generate:tests` to automatically generate test files based on your application's routes, and `execute:tests` to run all tests within the `Feature` directory and its subdirectories.
+**Laravel Wave Test** is a tool designed to streamline the process of creating and running tests in Laravel projects. This package provides two main commands: `generate:tests` to automatically generate test files based on your application's routes, and `execute:tests` to run all tests within the `Feature` directory and its subdirectories.
 
 > **Note:** This package is intended to accelerate the initial creation of tests. The generated `*Test.php` files may require manual adjustments to properly fit the specific requirements of your project.
 
@@ -11,7 +11,7 @@
 1. **Install the package via Composer:**
 
    ```bash
-   composer require renatomarinho/laravel-test-wave
+   composer require renatomarinho/laravel-wave-test
    ```
 
 2. **Verify the ServiceProvider Registration:**
