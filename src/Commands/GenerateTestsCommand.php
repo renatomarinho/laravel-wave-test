@@ -87,13 +87,16 @@ class GenerateTestsCommand extends Command
 
     private function prepareTestFileInfo(string $routeName): ?array
     {
+        // Replace hyphens with dots for consistent handling
+        $routeName = str_replace('-', '.', $routeName);
+
         $parts = explode('.', $routeName);
         if (count($parts) < 2) {
             $this->warn("Invalid route name format: $routeName");
             return null;
         }
 
-        $folderName = ucfirst($parts[0]);
+        $folderName = $this->toPascalCase($parts[0]);
         $baseFileName = preg_replace_callback(
             '/\.(.)/',
             function ($match) {
@@ -102,8 +105,20 @@ class GenerateTestsCommand extends Command
             implode('.', array_slice($parts, 1))
         );
 
-        $fileName = str_replace('.', '', $baseFileName) . 'Test';
+        $fileName = $this->toPascalCase(str_replace('.', '', $baseFileName)) . 'Test';
         return [$folderName, $fileName];
+    }
+
+    /**
+     * Convert a string to PascalCase
+     */
+    private function toPascalCase(string $string): string
+    {
+        // First replace hyphens with spaces
+        $string = str_replace('-', ' ', $string);
+
+        // Convert to PascalCase
+        return str_replace(' ', '', ucwords($string));
     }
 
     private function createTestFilePath(string $folderName, string $fileName): string
